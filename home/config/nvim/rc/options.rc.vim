@@ -58,3 +58,6 @@ set autoread
 " Enable cycle-completion for filename in command
 set wildmenu
 set wildmode=full
+
+echo glob(g:conf_dir . '/rc/dein/*.lazy.toml', 1, 1)
+echo filter(glob(g:conf_dir . '/rc/dein/*.toml', 1, 1), 'v:val !~# ''lazy\.toml$''')

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# vim: set tabstop=4 shiftwidth=4:
+
+source ${HOME}/.dotenv
+HISTORY_FILE=${DOT_CACHE_DIR}/.recall_history
+
+declare -A flags
+
+while (( $# > 0 ))
+do
+    case "$1" in
+        -*)
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if (( $# > 0 )); then
+    echo "$@" >> ${HISTORY_FILE}
+    $@
+else
+    cmd=$(cat ${HISTORY_FILE} | peco)
+    ${cmd}
+fi
+
